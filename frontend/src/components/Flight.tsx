@@ -26,7 +26,7 @@ const Flight = ({ flight }: { flight: Flight }) => {
         <div>
             <div className="rounded-2xl rounded-bl-none bg-white p-5">
                 <h1 className="font-black mb-5">Milano - Madrid</h1>
-                <div className="flex">
+                <div className="flex justify-between">
                     <div className="flex flex-col">
                         <div className="flex items-center gap-2">
                             <LuPlaneTakeoff className="text-sm" />
@@ -35,13 +35,13 @@ const Flight = ({ flight }: { flight: Flight }) => {
                         <h1 className="font-black">{convertTo12HourFormat(flight.scheduleTime)}</h1>
                         <p className="font-extrabold text-sm text-opacity-70">Airport: AMS</p>
                     </div>
-                    <div className="my-auto h-1 flex-1 bg-black/20 mx-24"></div>
+                    <div className="my-auto h-1 flex-1 bg-black/20 mx-24 hidden md:block"></div>
                     <div className="flex flex-col items-center gap-2">
                         <img src={`https://pics.avs.io/200/50/${flight.prefixIATA}.png`} className="w-24" alt="" />
                         <FaPlane className="text-primary text-2xl" />
                         <p className="font-extrabold text-sm text-opacity-70">2h 25m (Nonstop)</p>
                     </div>
-                    <div className="my-auto h-1 flex-1 bg-black/20 mx-24"></div>
+                    <div className="my-auto h-1 flex-1 bg-black/20 mx-24 hidden md:block"></div>
                     <div className="flex flex-col text-right">
                         <div className="flex justify-end items-center gap-2">
                             <LuPlaneLanding className="text-sm" />

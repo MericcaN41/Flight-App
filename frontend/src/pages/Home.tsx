@@ -24,7 +24,6 @@ const Home = () => {
     useEffect(() => {
         fetch("/api/flights", { headers: { "Cache-Control": "no-cache" } }).then(async res => {
             const data = await res.json()
-            console.log(data.flights)
             setFlights(data.flights)
         }).catch(err => console.error(err))
     }, [])
@@ -34,7 +33,7 @@ const Home = () => {
             route: filters.to,
             fromDateTime: filters.startDate,
             toDateTime: filters.endDate
-        }), { headers: { "Cache-Control": "no-cache" } }).then(async res => {
+        }), { headers: { "Cache-Control": "no-cache" },  }).then(async res => {
             const data = await res.json()
             console.log(data.flights)
             setFlights(data.flights ?? [])
@@ -42,12 +41,12 @@ const Home = () => {
     }
 
     return (
-        <div className="font-noto w-full flex flex-col h-screen bg-background">
+        <div className="font-noto w-full flex flex-col min-h-screen lg:h-screen bg-background">
             <Header />
-            <div className="flex gap-10 flex-1 p-5">
+            <div className="flex flex-col lg:flex-row gap-10 flex-1 p-5">
                 <div className="flex flex-1 flex-col gap-10 ">
                     <div className="w-full p-5 bg-white rounded-2xl ">
-                        <div className="flex  items-start justify-between">
+                        <div className="flex flex-col md:flex-row gap-5 items-start justify-between">
                             <div className="flex items-center gap-3">
                                 <FaPlane />
                                 <h1 className="font-black">BOOK YOUR FLIGHT</h1>
@@ -61,7 +60,7 @@ const Home = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="flex gap-5 mt-5">
+                        <div className="flex flex-col lg:flex-row gap-5 mt-5">
                             <div className="flex flex-1 gap-2">
                                 <CustomText placeholder="AMS" disabled />
                                 <CustomText onChange={e => setFilter("to", e.target.value)} reverse placeholder="To" />
@@ -73,14 +72,14 @@ const Home = () => {
                         </div>
                         <div onClick={updateFlights} className="bg-primary hover:bg-primary/80 transition-colors cursor-pointer rounded-lg p-3 px-4 mt-5 w-fit text-white font-bold text-sm">Show Flights</div>
                     </div>
-                    <div className="flex flex-1 overflow-hidden basis-0 gap-10">
-                        <div className="flex-1 basis-0 overflow-auto flex flex-col gap-5">
+                    <div className="flex flex-col lg:flex-row flex-1 lg:overflow-hidden basis-0 gap-10">
+                        <div className="h-[600px] lg:h-auto lg:flex-1 scroll-hidden overflow-scroll lg:overflow-auto overflow-x-hidden flex flex-col gap-5">
                             {
                                 flights.length <= 0 ? <h1 className="font-bold text-2xl text-black flex-1 flex items-center justify-center">No flights found</h1> :
                                     flights.map((flight: Flight, i: number) => <Flight key={i} flight={flight} />)
                             }
                         </div>
-                        <div className="w-[300px] shrink-0 overflow-hidden">
+                        <div className="lg:w-[300px] scroll-hidden shrink-0 overflow-auto flex flex-col w-full">
                             <h2 className="font-black my-3">Sort by:</h2>
                             <select className="w-full p-2 rounded-lg font-extrabold text-black/50 text-sm outline-none" name="" id="">
                                 <option value="">Lowest Price</option>
@@ -103,7 +102,7 @@ const Home = () => {
                         </div>
                     </div>
                 </div>
-                <div className="grid grid-rows-3 gap-5">
+                <div className="grid grid-cols-3 lg:grid-cols-1 lg:grid-rows-3 gap-5">
                     <div
                         style={{ backgroundImage: "url(https://images.unsplash.com/photo-1468818438311-4bab781ab9b8?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)" }}
                         className="flex bg-center bg-cover isolate p-5 overflow-hidden relative rounded-2xl aspect-square">

@@ -11,6 +11,9 @@ export default {
                 backgroundDark: "#E6E0EB",
                 backgroundHover: "#EDE9F2",
                 primary: "#4B0097"
+            },
+            screens: {
+                "maxmd": { "max": "768px" },
             }
         },
         fontFamily: {
