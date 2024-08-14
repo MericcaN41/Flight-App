@@ -1,3 +1,5 @@
+<img src="https://i.imgur.com/noBTfWS.gif" alt=""/>
+
 # Installation
 
 ## 1. Create an Account and Obtain API Keys
