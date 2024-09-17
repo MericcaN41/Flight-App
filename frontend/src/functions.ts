@@ -1,3 +1,8 @@
+/**
+ * Convert 24-hour time format to 12-hour time format
+ * @param time string EX: 24:00
+ * @returns string
+ */
 export const convertTo12HourFormat = (time: string): string => {
     const [hour, minute] = time.split(':').map(Number);
     const ampm = hour >= 12 ? 'PM' : 'AM';

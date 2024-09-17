@@ -5,8 +5,10 @@ import { toast } from "react-toastify";
 
 const Flight = ({ flight }: { flight: Flight }) => {
 
+    /**
+     * Post request to backend to add the flight to the database
+     */
     const bookFlight = () => {
-        console.log(flight)
         fetch("/api/flights", {
             method: "POST",
             body: JSON.stringify({ flight }),

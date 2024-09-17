@@ -6,6 +6,7 @@ const MyFlights = () => {
 
     const [flights, setFlights] = useState<Flight[]>([])
 
+    // Fetch user-saved flights from the backend
     useEffect(() => {
         fetch("/api/userflights").then(async res => {
             const data = await res.json()

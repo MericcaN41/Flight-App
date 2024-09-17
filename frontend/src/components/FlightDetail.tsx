@@ -7,6 +7,7 @@ const FlightDetail = ({ flight }: { flight: Flight }) => {
     const [airline, setAirline] = useState<string | null>(null)
     const [details, setDetails] = useState(false)
 
+    // Fetch the airline name from the backend
     useEffect(() => {
         fetch("/api/airline/" + flight.prefixIATA).then(async res => {
             const data = await res.json()

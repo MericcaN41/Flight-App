@@ -17,10 +17,12 @@ const Home = () => {
         endDate: "",
     })
 
+    // Sets the filter state above to filter the flights
     const setFilter = (key: string, value: string) => {
         setFilters({ ...filters, [key]: value })
     }
 
+    // Fetch the flights from the backend
     useEffect(() => {
         fetch("/api/flights", { headers: { "Cache-Control": "no-cache" } }).then(async res => {
             const data = await res.json()
@@ -28,6 +30,7 @@ const Home = () => {
         }).catch(err => console.error(err))
     }, [])
 
+    // Fetches and updates the flights based on the filters
     const updateFlights = () => {
         fetch("/api/flights?" + new URLSearchParams({
             route: filters.to,
@@ -35,7 +38,6 @@ const Home = () => {
             toDateTime: filters.endDate
         }), { headers: { "Cache-Control": "no-cache" },  }).then(async res => {
             const data = await res.json()
-            console.log(data.flights)
             setFlights(data.flights ?? [])
         }).catch(err => console.error(err))
     }

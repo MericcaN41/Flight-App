@@ -4,6 +4,9 @@ import Flight from "../models/Flight.js"
 
 const apiRouter = express.Router()
 
+// Fetches the flights from the Schiphol API based on the filters from the query parameters
+// It only fetches the flights that are departing from Schiphol
+// Sorted by scheduleTime in descending order
 apiRouter.get("/flights", async (req, res) => {
     const searchparams = req.query
 
@@ -35,6 +38,7 @@ apiRouter.get("/flights", async (req, res) => {
     }
 })
 
+// Fetches the airline's name from the airline code
 apiRouter.get("/airline/:airlineCode", async (req, res) => {
     const airlineCode = req.params.airlineCode
 
@@ -54,11 +58,13 @@ apiRouter.get("/airline/:airlineCode", async (req, res) => {
     }
 })
 
+// Fetches every saved flight from the database
 apiRouter.get("/userflights", async (req, res) => {
     const flights = await Flight.find()
     res.json(flights)
 })
 
+// Takes a flight object in the request body and saves it to the database
 apiRouter.post("/flights", async (req, res) => {
     const flight = req.body.flight
 
